@@ -1,0 +1,90 @@
+# Configuration for Stock Market Volatility Prediction
+
+# Data Collection
+data:
+  default_ticker: "^GSPC"  # S&P 500 Index
+  start_date: "2015-01-01"
+  end_date: null  # null means current date
+  data_source: "yfinance"  # Options: yfinance, alpha_vantage
+  
+# Feature Engineering
+features:
+  lookback_window: 60  # Days to look back for sequence
+  prediction_horizon: 5  # Days ahead to predict volatility
+  
+  technical_indicators:
+    - log_returns
+    - rolling_volatility
+    - sma_20
+    - sma_50
+    - ema_12
+    - ema_26
+    - rsi_14
+    - macd
+    - bollinger_bands
+    - atr_14
+  
+  volatility_window: 20  # Window for calculating rolling volatility
+
+# Model Architecture
+models:
+  lstm:
+    units: [128, 64, 32]
+    dropout: 0.3
+    activation: 'tanh'
+    
+  gru:
+    units: [128, 64, 32]
+    dropout: 0.3
+    activation: 'tanh'
+    
+  cnn:
+    filters: [64, 128, 64]
+    kernel_sizes: [3, 3, 3]
+    pool_size: 2
+    dropout: 0.3
+
+# Training Configuration
+training:
+  batch_size: 32
+  epochs: 100
+  validation_split: 0.2
+  test_split: 0.1
+  early_stopping_patience: 15
+  learning_rate: 0.001
+  optimizer: 'adam'
+  loss: 'mse'
+  
+# Ensemble Configuration
+ensemble:
+  method: 'weighted_average'  # Options: simple_average, weighted_average, voting
+  weights: null  # null means equal weights, or [0.33, 0.33, 0.34]
+  uncertainty_method: 'variance'  # Options: variance, entropy, std
+  
+# Risk Classification Thresholds
+risk_thresholds:
+  low: 0.015      # Volatility < 1.5%
+  medium: 0.025   # 1.5% <= Volatility < 2.5%
+  high: 0.025     # Volatility >= 2.5%
+
+# Streamlit App Configuration
+app:
+  title: "Stock Market Volatility & Risk Prediction"
+  default_stocks:
+    - "^GSPC"    # S&P 500
+    - "^DJI"     # Dow Jones
+    - "^IXIC"    # NASDAQ
+    - "AAPL"     # Apple
+    - "GOOGL"    # Google
+    - "MSFT"     # Microsoft
+    - "TSLA"     # Tesla
+    - "AMZN"     # Amazon
+  
+  chart_days: 180  # Days of historical data to display
+
+# Paths
+paths:
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  models: "saved_models"
+  logs: "logs"
