@@ -14,7 +14,7 @@ Your Stock Market Risk Prediction Streamlit app is now **live and running**!
 ## 📋 What Was Created
 
 ### 1. **Streamlit Application** 📱
-**File**: `app/streamlit_app.py`
+**File**: `app.py`
 
 A premium, state-of-the-art web application featuring:
 - ✨ **Modern Dark Theme** with glassmorphism effects
@@ -102,7 +102,7 @@ This will create:
 
 ### Option 1: Local (Current - ✅ Running)
 ```bash
-streamlit run app/streamlit_app.py
+streamlit run app.py
 ```
 
 **Pros**: 
@@ -118,7 +118,7 @@ streamlit run app/streamlit_app.py
 1. Push code to GitHub
 2. Visit https://share.streamlit.io
 3. Connect repository
-4. Set main file: `app/streamlit_app.py`
+4. Set main file: `app.py`
 5. Deploy!
 
 **Pros**:
@@ -150,8 +150,8 @@ git push heroku main
 
 ```
 Stock_Market_Risk_Prediction/
+├── app.py                     ← Main application (MOVED)
 ├── app/
-│   ├── streamlit_app.py          ← Main application (NEW)
 │   └── README.md                 ← App documentation (NEW)
 ├── .streamlit/
 │   └── config.toml               ← Theme config (NEW)
@@ -185,7 +185,7 @@ Stock_Market_Risk_Prediction/
 3. **Customize**:
    - Edit `config.yaml` for different stocks
    - Modify `.streamlit/config.toml` for different colors
-   - Add more features to `streamlit_app.py`
+   - Add more features to `app.py`
 
 4. **Share**:
    - Share network URL with colleagues on same network
@@ -202,7 +202,7 @@ Stock_Market_Risk_Prediction/
 
 ### Port Already in Use?
 ```bash
-streamlit run app/streamlit_app.py --server.port 8502
+streamlit run app.py --server.port 8502
 ```
 
 ### Predictions Not Working?
@@ -220,10 +220,10 @@ streamlit run app/streamlit_app.py --server.port 8502
 
 ```bash
 # Start app (current)
-streamlit run app/streamlit_app.py
+streamlit run app.py
 
 # Start on different port
-streamlit run app/streamlit_app.py --server.port 8502
+streamlit run app.py --server.port 8502
 
 # Train models
 python src/train.py

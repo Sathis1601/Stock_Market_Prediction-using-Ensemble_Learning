@@ -249,7 +249,7 @@ Your app is ready for deployment to Streamlit Cloud:
    - Visit https://share.streamlit.io
    - Connect GitHub
    - Select repository
-   - Set path: `app/streamlit_app.py`
+   - Set path: `app.py`
    - Deploy!
 
 3. **Note**: You'll need to either:
@@ -297,7 +297,7 @@ Your Stock Market Risk Prediction system is now **fully operational**!
 3. Restart Streamlit:
    ```bash
    # Press Ctrl+C to stop
-   streamlit run app/streamlit_app.py
+   streamlit run app.py
    ```
 
 ### Predictions Look Unusual

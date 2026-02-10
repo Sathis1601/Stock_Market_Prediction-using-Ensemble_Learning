@@ -4,7 +4,7 @@
 The Streamlit app was looking for `.h5` model files, but the training script saved `.keras` files.
 
 ## Fix Applied
-Updated `app/streamlit_app.py` (lines 206-208) to look for:
+Updated `app.py` (lines 206-208) to look for:
 - `lstm_model.keras` ✅
 - `gru_model.keras` ✅
 - `cnn_model.keras` ✅
@@ -30,7 +30,7 @@ The app file has been updated. You need to refresh the Streamlit app:
 
 **Method 3: Restart Streamlit (If needed)**
 1. In the terminal running Streamlit, press `Ctrl + C`
-2. Run again: `streamlit run app/streamlit_app.py`
+2. Run again: `streamlit run app.py`
 
 ## What Will Change
 

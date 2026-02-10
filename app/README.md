@@ -11,7 +11,7 @@
 
 2. **Run the Streamlit App**:
    ```bash
-   streamlit run app/streamlit_app.py
+   streamlit run app.py
    ```
 
 3. **Access the App**:
@@ -40,7 +40,7 @@ python src/train.py
 
 ### 1. Local Deployment (Development)
 ```bash
-streamlit run app/streamlit_app.py
+streamlit run app.py
 ```
 
 ### 2. Streamlit Cloud (Free Hosting)
@@ -61,7 +61,7 @@ streamlit run app/streamlit_app.py
    - Sign in with GitHub
    - Click "New app"
    - Select your repository
-   - Set the main file path: `app/streamlit_app.py`
+   - Set the main file path: `app.py`
    - Click "Deploy"
 
 3. **Configuration**:
@@ -83,7 +83,7 @@ COPY . .
 
 EXPOSE 8501
 
-CMD ["streamlit", "run", "app/streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
 ```
 
 Build and run:
@@ -109,7 +109,7 @@ enableCORS = false\n\
 
 2. Create `Procfile`:
 ```
-web: sh setup.sh && streamlit run app/streamlit_app.py
+web: sh setup.sh && streamlit run app.py
 ```
 
 3. Deploy:

@@ -9,7 +9,7 @@ description: Deploy and run the Streamlit application
 // turbo
 1. **Run the Streamlit app**:
 ```bash
-streamlit run app/streamlit_app.py
+streamlit run app.py
 ```
 
 The app will automatically open in your default browser at `http://localhost:8501`
@@ -50,7 +50,7 @@ git push -u origin main
    - Click "New app"
    - Connect your GitHub account
    - Select repository: `YOUR_USERNAME/YOUR_REPO`
-   - Set main file path: `app/streamlit_app.py`
+   - Set main file path: `app.py`
    - Click "Deploy"
 
 5. **Wait for deployment**:
@@ -102,7 +102,7 @@ streamlit --version
 ### Port already in use
 ```bash
 # Use different port
-streamlit run app/streamlit_app.py --server.port 8502
+streamlit run app.py --server.port 8502
 ```
 
 ### Models not loading

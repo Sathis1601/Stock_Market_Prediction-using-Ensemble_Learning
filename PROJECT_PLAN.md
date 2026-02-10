@@ -26,11 +26,11 @@ Stock_Market_Risk_Prediction/
 ├── notebooks/
 │   └── exploration.ipynb      # Data exploration
 │
+├── app.py                     # Main Streamlit application
 ├── app/
-│   └── streamlit_app.py       # Streamlit web interface
+│   └── README.md              # App documentation
 │
 ├── saved_models/              # Trained model weights
-│
 ├── requirements.txt           # Python dependencies
 ├── config.yaml               # Configuration settings
 └── README.md                 # Documentation

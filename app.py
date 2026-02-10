@@ -17,8 +17,8 @@ import yfinance as yf
 import warnings
 warnings.filterwarnings('ignore')
 
-# Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent))
+# Add current directory to path
+sys.path.append(str(Path(__file__).parent))
 
 from src.data_collection import StockDataCollector
 from src.preprocessing import FeatureEngineer
@@ -180,7 +180,7 @@ st.markdown("""
 @st.cache_resource
 def load_config():
     """Load configuration from YAML file"""
-    config_path = Path(__file__).parent.parent / "config.yaml"
+    config_path = Path(__file__).parent / "config.yaml"
     with open(config_path, 'r') as f:
         return yaml.safe_load(f)
 
@@ -192,7 +192,7 @@ def initialize_models():
     """Initialize and load trained models"""
     try:
         # Check if models exist
-        models_dir = Path(__file__).parent.parent / "saved_models"
+        models_dir = Path(__file__).parent / "saved_models"
         
         if not models_dir.exists() or len(list(models_dir.glob("*"))) == 0:
             return None, "Models not found. Please train the models first."
