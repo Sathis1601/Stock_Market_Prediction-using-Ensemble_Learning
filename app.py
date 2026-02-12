@@ -596,15 +596,32 @@ def main():
                     st.error("❌ Not enough data to make predictions")
                     return
                 
+                # CRITICAL: Load scaler and normalize data
+                scaler_path = Path(__file__).parent / "saved_models" / "scaler.pkl"
+                if not scaler_path.exists():
+                    st.error("❌ Scaler not found. Please retrain the models.")
+                    st.code("python src/train.py", language="bash")
+                    return
+                
+                feature_engineer.load_scaler(str(scaler_path))
+                
+                # Normalize the features using the loaded scaler
+                n_samples, n_timesteps, n_features = X.shape
+                X_reshaped = X.reshape(-1, n_features)
+                X_scaled = feature_engineer.scaler.transform(X_reshaped)
+                X_normalized = X_scaled.reshape(n_samples, n_timesteps, n_features)
+                
             except Exception as e:
                 st.error(f"❌ Error processing features: {str(e)}")
+                import traceback
+                st.code(traceback.format_exc())
                 return
         
         # Make predictions
         with st.spinner("🤖 Running ensemble predictions..."):
             try:
-                # Use the last sequence for prediction
-                X_last = X[-1:] 
+                # Use the last normalized sequence for prediction
+                X_last = X_normalized[-1:] 
                 
                 predictions = ensemble.predict(X_last)
                 risk_level = ensemble.classify_risk(predictions['ensemble_prediction'][0])
@@ -612,6 +629,8 @@ def main():
             except Exception as e:
                 st.error(f"❌ Error making predictions: {str(e)}")
                 st.info("This might happen if models weren't trained on compatible data.")
+                import traceback
+                st.code(traceback.format_exc())
                 return
         
         # Display predictions

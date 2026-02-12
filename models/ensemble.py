@@ -108,9 +108,11 @@ class EnsembleVolatilityPredictor:
         else:
             uncertainty = np.std(all_predictions, axis=1)
         
-        # Confidence score (inverse of normalized uncertainty)
-        max_uncertainty = np.max(uncertainty) if np.max(uncertainty) > 0 else 1.0
-        confidence = 1 - (uncertainty / max_uncertainty)
+        # Confidence score based on a fixed reference scale
+        # Typical volatility uncertainty ranges from 0 to 0.05 (5%)
+        # Lower uncertainty = higher confidence
+        reference_uncertainty = 0.05  # Maximum expected uncertainty (5% volatility)
+        confidence = np.clip(1 - (uncertainty / reference_uncertainty), 0, 1)
         
         return {
             'ensemble_prediction': ensemble_pred,
